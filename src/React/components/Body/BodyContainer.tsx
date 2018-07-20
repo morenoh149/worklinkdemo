@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import LeftHeader from './LeftPanel/Header';
 import ActionHeader from './RightPanel/Header/ActionHeader';
-// import LeftBody from './LeftPanel/Body/Container';
-// import RightBody from './RightPanel/RightPanelBody/Container';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import LeftBody from './LeftPanel/Body/Container';
+import RightBody from './RightPanel/Body/Container';
 
 type Props = {};
 export default class Body extends Component<Props> {
@@ -15,7 +14,10 @@ export default class Body extends Component<Props> {
           <LeftHeader />
           <ActionHeader />
         </View>
-        <View style={styles.body} />
+        <View style={styles.body}>
+          <LeftBody />
+          <RightBody />
+        </View>
       </View>
     );
   }
@@ -27,10 +29,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: '#BDBDBD',
-    // backgroundColor: 'green',
     paddingTop: '1%',
     paddingLeft: '3%',
-    paddingRight: '3%'
+    paddingRight: '3%',
+    paddingBottom: '3%'
   },
   header: {
     flex: 0.3,
@@ -38,6 +40,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 5,
-    backgroundColor: 'red'
+    flexDirection: 'row'
   }
 });

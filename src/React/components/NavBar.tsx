@@ -18,7 +18,7 @@ export default class NavBar extends Component<Props> {
         </TouchableOpacity>
         <TouchableOpacity style={[styles.tabContainer]}>
           <View style={styles.tabIcon} />
-          <Text style={styles.tabText}>SHOP NAME</Text>
+          <Text style={styles.tabText}>UNASSIGNED</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.tabContainer]}>
           <View style={styles.tabIcon} />

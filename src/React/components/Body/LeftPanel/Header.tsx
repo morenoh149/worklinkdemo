@@ -27,12 +27,15 @@ export default class LeftPanelHeader extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1.5,
+    flex: 2,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: '2%',
     paddingRight: '2%',
-    marginRight: '5%'
+    marginRight: '2%',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#BDBDBD'
   },
   title: {
     flex: 2.5

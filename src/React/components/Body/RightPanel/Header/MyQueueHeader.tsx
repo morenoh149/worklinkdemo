@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: '2%',
     paddingRight: '2%',
-    marginLeft: '5%',
+    marginLeft: '2%',
     backgroundColor: 'yellow'
   },
   title: {

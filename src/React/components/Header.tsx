@@ -28,13 +28,14 @@ export default class Header extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.5,
+    // flex: 0.5,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#424242',
-    paddingTop: '5%',
-    paddingLeft: 15,
-    paddingRight: 15
+    paddingTop: '.5%',
+    paddingBottom: '.6%'
+    // paddingLeft: 15,
+    // paddingRight: 15
   },
   title: {
     flex: 4,

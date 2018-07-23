@@ -26,13 +26,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: '2%',
-    paddingRight: '2%',
-    marginLeft: '2%',
-    backgroundColor: 'yellow'
+    marginLeft: '3%'
   },
   title: {
-    flex: 2
+    flex: 2,
+    paddingLeft: '5%'
   },
   titleText: {
     fontSize: 15,

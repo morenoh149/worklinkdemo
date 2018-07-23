@@ -7,11 +7,16 @@ import {
   ScrollView,
   ListView
 } from 'react-native';
+import MyWorkOrderList from './MyWorkOrderList';
 
 type Props = {};
 export default class LeftBody extends Component<Props> {
   render() {
-    return <View style={styles.container} />;
+    return (
+      <View style={styles.container}>
+        <MyWorkOrderList />
+      </View>
+    );
   }
 }
 

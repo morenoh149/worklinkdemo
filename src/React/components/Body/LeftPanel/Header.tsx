@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     paddingLeft: '2%',
     paddingRight: '2%',
     marginRight: '2%',
-    borderWidth: 1,
-    borderStyle: 'solid',
+    // borderWidth: 1,
+    // borderStyle: 'solid',
     borderColor: '#BDBDBD'
   },
   title: {

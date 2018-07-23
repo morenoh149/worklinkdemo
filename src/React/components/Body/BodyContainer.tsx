@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LeftHeader from './LeftPanel/Header';
-import ActionHeader from './RightPanel/Header/ActionHeader';
+import RightHeader from './RightPanel/Header/Container';
 import LeftBody from './LeftPanel/Body/Container';
 import RightBody from './RightPanel/Body/Container';
 
@@ -12,7 +12,7 @@ export default class Body extends Component<Props> {
       <View style={styles.container}>
         <View style={styles.header}>
           <LeftHeader />
-          <ActionHeader />
+          <RightHeader />
         </View>
         <View style={styles.body}>
           <LeftBody />

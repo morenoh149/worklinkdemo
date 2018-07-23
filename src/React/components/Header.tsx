@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 type Props = {};
 export default class Header extends Component<Props> {
@@ -18,7 +18,7 @@ export default class Header extends Component<Props> {
             <Text>JJ</Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Icon name="caret-down" size={30} color="#BDBDBD" />
+            <Icon name="settings" size={30} color="#BDBDBD" />
           </TouchableOpacity>
         </View>
       </View>

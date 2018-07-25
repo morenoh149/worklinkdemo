@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LeftHeader from './LeftPanel/Header';
-import RightHeader from './RightPanel/Header/Container';
-import LeftBody from './LeftPanel/Body/Container';
-import RightBody from './RightPanel/Body/Container';
+// import RightHeader from './RightPanel/Header/Container';
+// import LeftBody from './LeftPanel/Body/Container';
+// import RightBody from './RightPanel/Body/Container';
 
 type Props = {};
 export default class Body extends Component<Props> {
@@ -11,12 +11,12 @@ export default class Body extends Component<Props> {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <LeftHeader />
-          <RightHeader />
+          {/* <LeftHeader />
+          <RightHeader /> */}
         </View>
         <View style={styles.body}>
-          <LeftBody />
-          <RightBody />
+          {/* <LeftBody />
+          <RightBody /> */}
         </View>
       </View>
     );

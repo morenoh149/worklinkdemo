@@ -1,37 +1,22 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import LeftHeader from '../components/Body/LeftPanel/Header';
-import RightHeader from '../components/Body/RightPanel/Header/ActionHeader';
-import LeftBody from '../components/Body/LeftPanel/Body/MyWorkOrderList';
-import RightBody from '../components/Body/RightPanel/Body/ActionsList';
 
-import { NavigationScreenProp } from 'react-navigation';
-
-export interface IMyQueueScreenProps {
-  navigation: NavigationScreenProp<any, any>;
-}
-
-export default class MyQueueScene extends Component<IMyQueueScreenProps> {
+type Props = {};
+export default class AppBodySkeleton extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <View style={[styles.leftStyles, styles.bothHeaders]}>
-            <LeftHeader />
-          </View>
+          <View style={[styles.leftStyles, styles.bothHeaders]} />
           <View
             style={[styles.rightStyles, styles.rightHeader, styles.bothHeaders]}
-          >
-            <RightHeader />
-          </View>
+          />
         </View>
         <View style={styles.body}>
-          <View style={[styles.leftStyles, styles.leftBody, styles.bothBodies]}>
-            <LeftBody navigation={this.props.navigation} />
-          </View>
-          <View style={[styles.rightStyles, styles.bothBodies]}>
-            <RightBody />
-          </View>
+          <View
+            style={[styles.leftStyles, styles.leftBody, styles.bothBodies]}
+          />
+          <View style={[styles.rightStyles, styles.bothBodies]} />
         </View>
       </View>
     );
@@ -62,9 +47,6 @@ const styles = StyleSheet.create({
     marginLeft: '2%'
   },
   bothHeaders: {
-    // borderWidth: 1,
-    // borderStyle: 'solid',
-    // borderColor: '#BDBDBD',
     paddingLeft: '3%'
   },
   rightHeader: {

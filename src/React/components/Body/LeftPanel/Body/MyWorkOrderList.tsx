@@ -4,19 +4,21 @@ import {
   Text,
   View,
   TouchableOpacity,
-  ScrollView,
-  ListView,
   FlatList
 } from 'react-native';
-import { workOrders } from '../../../../../data';
+import { workOrders, IWorkOrder } from '../../../../../data';
 
-type Props = {};
-export default class MyWorkOrderList extends Component<Props> {
+export default class MyWorkOrderList extends Component<any, any> {
+  onViewMore = (workOrder: IWorkOrder) => {
+    this.props.navigation.navigate('Details', {
+      ...workOrder
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-          style={styles.list}
           data={workOrders}
           renderItem={({ item }) => (
             <View style={styles.wordCards}>
@@ -39,7 +41,10 @@ export default class MyWorkOrderList extends Component<Props> {
                   </Text>
                   <Text style={styles.client}>Client: {item.client.name}</Text>
                 </View>
-                <TouchableOpacity style={styles.more}>
+                <TouchableOpacity
+                  style={styles.more}
+                  onPress={() => this.onViewMore(item)}
+                >
                   <Text style={styles.moreText}>View More</Text>
                 </TouchableOpacity>
               </View>
@@ -59,37 +64,29 @@ export default class MyWorkOrderList extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
-    margin: '3%',
-    marginTop: '7%'
+    flex: 2
   },
   wordCards: {
     flexDirection: 'row',
     alignItems: 'center',
-    // backgroundColor: 'red',
     borderWidth: 0.5,
     borderStyle: 'solid',
     borderColor: '#BDBDBD',
     padding: '3%',
     paddingBottom: '7%'
-    // backgroundColor: 'pink'
   },
   details: {
     flex: 3,
-    // backgroundColor: 'red'
-    // flexDirection: 'row',
     padding: '2%'
   },
   status: {
     flexDirection: 'row',
-    // backgroundColor: 'yellow',
     flex: 1
   },
   statusText: {
     fontSize: 12,
     fontWeight: 'bold',
     color: '#757575'
-    // backgroundColor: 'gold'
   },
   statusIndicator: {
     backgroundColor: '#BDBDBD',
@@ -100,7 +97,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   workCode: {
-    // backgroundColor: 'green',
     flex: 1.5,
     justifyContent: 'center'
   },
@@ -108,7 +104,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     color: '#616161'
-    // flex: 1
   },
   workCodeId: {
     fontSize: 12,
@@ -117,11 +112,9 @@ const styles = StyleSheet.create({
   avatarContainer: {
     flex: 1,
     alignItems: 'center',
-    // backgroundColor: 'blue',
     padding: '1%'
   },
   location: {
-    // backgroundColor: 'gold',
     flex: 1,
     justifyContent: 'center'
   },

@@ -19,12 +19,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: '3%'
+    alignItems: 'center'
+    // marginLeft: '3%',
+    // backgroundColor: 'blue'
   },
   title: {
-    flex: 2,
-    paddingLeft: '5%'
+    flex: 2
+    // paddingLeft: '5%'
   },
   titleText: {
     fontSize: 15,

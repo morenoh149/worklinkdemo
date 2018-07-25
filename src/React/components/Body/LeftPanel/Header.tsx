@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: '2%',
-    paddingRight: '2%',
-    marginRight: '2%',
+    // paddingLeft: '2%',
+    // paddingRight: '2%',
+    // marginRight: '2%',
     // borderWidth: 1,
     // borderStyle: 'solid',
     borderColor: '#BDBDBD'

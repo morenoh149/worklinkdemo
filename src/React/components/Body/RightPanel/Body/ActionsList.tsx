@@ -36,9 +36,10 @@ export default class ActionList extends Component<Props> {
 
 const styles = StyleSheet.create({
   actions: {
+    alignSelf: 'center',
     alignItems: 'center',
     width: 100,
-    marginBottom: 30
+    marginTop: '15%'
   },
   actionButton: {
     backgroundColor: '#BDBDBD',

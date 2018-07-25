@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // paddingLeft: '2%',
     // paddingRight: '2%',
-    marginLeft: '2%',
+    // marginLeft: '2%',
     // paddingTop: '2%',
     borderWidth: 0.5,
     borderStyle: 'solid',

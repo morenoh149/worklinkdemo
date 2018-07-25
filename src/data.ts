@@ -21,7 +21,7 @@ interface IEvent {
   time: string;
   description: string;
 }
-interface IWorkOrder {
+export interface IWorkOrder {
   status: string;
   id: string;
   serviceLocation: string;

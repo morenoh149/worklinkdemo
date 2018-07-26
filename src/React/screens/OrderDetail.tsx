@@ -6,29 +6,17 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
-import LeftHeader from '../components/Body/LeftPanel/Header';
 import ActionHeader from '../components/Body/RightPanel/Header/ActionHeader';
-import LeftBody from '../components/Body/LeftPanel/Body/MyWorkOrderList';
 import ActionList from '../components/Body/RightPanel/Body/ActionsList';
+import ServiceDetailCard from '../components/Body/LeftPanel/Body/ServiceDetailCard';
+import ServiceDescriptionCard from '../components/Body/LeftPanel/Body/ServiceDescriptionCard';
+import ClientCard from '../components/Body/LeftPanel/Body/ClientCard';
+import HistoryCard from '../components/Body/LeftPanel/Body/HistoryCard';
 
 export default class OrderDetail extends Component<any, any> {
   render() {
-    const {
-      id,
-      status,
-      serviceLocation,
-      assignedTo,
-      shop,
-      workCode,
-      clientSchedule,
-      workDescription,
-      clientDescription,
-      notes,
-      client,
-      history
-    } = this.props.navigation.state.params;
+    const { id } = this.props.navigation.state.params;
 
     return (
       <View style={styles.container}>
@@ -57,55 +45,22 @@ export default class OrderDetail extends Component<any, any> {
           <ScrollView
             style={[styles.leftStyles, styles.leftBody, styles.bothBodies]}
           >
-            <View style={styles.mainDescription}>
-              <Text style={[styles.status]}>{status.toLocaleUpperCase()}</Text>
-              <Text style={[styles.id]}>{id}</Text>
-              <View style={styles.serviceDetails}>
-                <View>
-                  <View style={[styles.detailItem, styles.padding]}>
-                    <View style={styles.icon} />
-                    <Text style={styles.title}>SERVICE LOCATION</Text>
-                  </View>
-                  <Text style={[styles.detail, styles.padding]}>
-                    {serviceLocation}
-                  </Text>
-                </View>
-                <View>
-                  <View style={[styles.detailItem, styles.padding]}>
-                    <View style={styles.icon} />
-                    <Text style={styles.title}>WORK CODE</Text>
-                  </View>
-                  <Text style={[styles.detail, styles.padding]}>
-                    {workCode}
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.serviceDescription}>
-              <View>
-                <View style={[styles.detailItem, styles.padding]}>
-                  <View style={styles.icon} />
-                  <Text style={styles.title}>NAME</Text>
-                </View>
-
-                <Text style={[styles.location, styles.padding]}>
-                  {serviceLocation}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.client}>
-              <View>
-                <View style={[styles.detailItem, styles.padding]}>
-                  <View style={styles.icon} />
-                  <Text style={styles.title}>NAME</Text>
-                </View>
-
-                <Text style={[styles.location, styles.padding]}>
-                  {serviceLocation}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.history} />
+            <ServiceDetailCard
+              navigation={this.props.navigation}
+              style={styles.cards}
+            />
+            <ServiceDescriptionCard
+              navigation={this.props.navigation}
+              style={styles.cards}
+            />
+            <ClientCard
+              navigation={this.props.navigation}
+              style={styles.cards}
+            />
+            <HistoryCard
+              navigation={this.props.navigation}
+              style={styles.cards}
+            />
             <Text>gg</Text>
           </ScrollView>
           <View
@@ -170,7 +125,7 @@ const styles = StyleSheet.create({
   },
   leftBody: {
     // flex: 5,
-    backgroundColor: 'blue',
+    // backgroundColor: 'blue',
     paddingTop: '5%',
     paddingLeft: '5%',
     paddingRight: '5%'
@@ -185,46 +140,23 @@ const styles = StyleSheet.create({
   },
 
   //=================
-  // WorkOrder Styles
+  // Card Styles
   //=================
-  mainDescription: {
-    // backgroundColor: 'red'
+  cards: {
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#BDBDBD'
   },
-  status: {
+  // status: {
+  //   color: '#757575',
+  //   fontWeight: 'bold',
+  //   fontSize: 12,
+  //   paddingBottom: '3%'
+  // },
+  id: {
+    fontSize: 18,
     color: '#757575',
     fontWeight: 'bold',
-    fontSize: 12
-    // marginBottom: '1%'
-  },
-  id: {
-    fontSize: 20,
-    color: '#757575',
-    fontWeight: 'bold'
-    // marginBottom: '1%'
-  },
-  detailItem: {
-    flexDirection: 'row',
-    // backgroundColor: 'green'
-  },
-  icon: {
-    backgroundColor: '#BDBDBD',
-    borderRadius: 10,
-    width: 15,
-    height: 15
-  },
-  padding: {
     paddingBottom: '3%'
-  },
-  serviceDescription: {
-    // backgroundColor: 'green'
-  },
-  title: {
-    color: '#757575'
-  },
-  client: {
-    backgroundColor: 'yellow'
-  },
-  history: {
-    backgroundColor: 'beige'
   }
 });

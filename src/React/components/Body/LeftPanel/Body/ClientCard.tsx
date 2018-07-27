@@ -6,25 +6,26 @@ export default class ClientCard extends Component<any, any> {
     const { client } = this.props.navigation.state.params;
 
     return (
-      <View style={styles.client}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Client</Text>
         <View>
           <View style={[styles.detailItem, styles.padding]}>
             <View style={styles.icon} />
-            <Text style={styles.title}>NAME</Text>
+            <Text style={styles.subTitle}>NAME</Text>
           </View>
           <Text style={[styles.detail, styles.padding]}>{client.name}</Text>
         </View>
         <View>
           <View style={[styles.detailItem, styles.padding]}>
             <View style={styles.icon} />
-            <Text style={styles.title}>NET ID</Text>
+            <Text style={styles.subTitle}>NET ID</Text>
           </View>
           <Text style={[styles.detail, styles.padding]}>{client.netId}</Text>
         </View>
         <View>
           <View style={[styles.detailItem, styles.padding]}>
             <View style={styles.icon} />
-            <Text style={styles.title}>PHONE NUMBER</Text>
+            <Text style={styles.subTitle}>PHONE NUMBER</Text>
           </View>
           <Text style={[styles.detail, styles.padding]}>
             {client.phoneNumber}
@@ -33,7 +34,7 @@ export default class ClientCard extends Component<any, any> {
         <View>
           <View style={[styles.detailItem, styles.padding]}>
             <View style={styles.icon} />
-            <Text style={styles.title}>EMAIL</Text>
+            <Text style={styles.subTitle}>EMAIL</Text>
           </View>
           <Text style={[styles.detail, styles.padding]}>{client.email}</Text>
         </View>
@@ -43,12 +44,20 @@ export default class ClientCard extends Component<any, any> {
 }
 
 const styles = StyleSheet.create({
-  client: {
-    // backgroundColor: 'yellow'
+  container: {
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#BDBDBD',
+    paddingTop: '5%',
+    paddingBottom: '2%'
+  },
+  title: {
+    color: '#424242',
+    paddingBottom: '2%',
+    fontWeight: 'bold'
   },
   detailItem: {
     flexDirection: 'row'
-    // backgroundColor: 'green'
   },
   icon: {
     backgroundColor: '#BDBDBD',
@@ -56,7 +65,7 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15
   },
-  title: {
+  subTitle: {
     fontWeight: 'bold',
     color: '#757575',
     fontSize: 12,

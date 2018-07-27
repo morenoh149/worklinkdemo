@@ -1,11 +1,12 @@
-import React from 'react';
 import {
   createStackNavigator,
   createMaterialTopTabNavigator
 } from 'react-navigation';
-import Header from '../React/components/Header';
 import MyQueue from '../React/screens/MyQueueScreen';
+import Unassigned from '../React/screens/UnassignedScreen';
 import OrderDetail from '../React/screens/OrderDetail';
+import Calendar from '../React/screens/CalendarScreen';
+import Notices from '../React/screens/Notices';
 
 const WorkOrderListStack = createStackNavigator(
   {
@@ -28,13 +29,13 @@ const WorkOrderListStack = createStackNavigator(
 const UnassignedListStack = createStackNavigator(
   {
     Feed: {
-      screen: MyQueue
+      screen: Unassigned
     },
     Details: {
-      screen: OrderDetail
-      //   navigationOptions: ({ navigation }) => ({
-      //     title: `${navigation.state.params.id}`
-      //   })
+      screen: OrderDetail,
+      navigationOptions: {
+        title: null
+      }
     }
   },
   {
@@ -47,8 +48,8 @@ const TabNavigator = createMaterialTopTabNavigator(
   {
     'MY QUEUE': { screen: WorkOrderListStack },
     UNASSIGNED: { screen: UnassignedListStack },
-    CALENDAR: { screen: MyQueue },
-    NOTICES: { screen: MyQueue }
+    CALENDAR: { screen: Calendar },
+    NOTICES: { screen: Notices }
   },
   {
     tabBarOptions: {
@@ -58,7 +59,7 @@ const TabNavigator = createMaterialTopTabNavigator(
         color: 'black'
       },
       style: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'white'
       },
       indicatorStyle: {
         backgroundColor: 'black'

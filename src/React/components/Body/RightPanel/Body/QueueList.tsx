@@ -6,17 +6,26 @@ import {
   TouchableOpacity,
   FlatList
 } from 'react-native';
-import { workOrders } from '../../../../../data';
+import { workOrders, IWorkOrder } from '../../../../../data';
+import { withNavigation } from 'react-navigation';
 
-type Props = {};
-export default class MyQueueList extends Component<Props> {
+class MyQueueList extends Component<any, any> {
+  onWorkOrderClick = (workOrder: IWorkOrder) => {
+    this.props.navigation.navigate('Details', {
+      ...workOrder
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           data={workOrders}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.wordCards}>
+            <TouchableOpacity
+              style={styles.wordCards}
+              onPress={() => this.onWorkOrderClick(item)}
+            >
               <View style={styles.workCode}>
                 <Text numberOfLines={1} style={styles.workCodeText}>
                   {item.workCode}
@@ -35,22 +44,17 @@ export default class MyQueueList extends Component<Props> {
     );
   }
 }
-
+export default withNavigation(MyQueueList);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
-    // paddingLeft: '2%',
-    // paddingRight: '2%',
-    // marginLeft: '2%',
-    // paddingTop: '2%',
     borderWidth: 0.5,
     borderStyle: 'solid',
     borderColor: '#BDBDBD'
   },
   wordCards: {
-    // backgroundColor: 'red',
     borderWidth: 1,
+    borderBottomWidth: 0.5,
     borderStyle: 'solid',
     borderColor: '#BDBDBD',
     padding: '4%'

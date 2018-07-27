@@ -6,18 +6,14 @@ import LeftBody from '../common/AppBody/LeftBody';
 import RightPanel from '../common/AppBody/RightPanel';
 import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
-import WorkOrderHeader from '../components/Body/LeftPanel/Header/MyWorkOrderHeader';
-import ActionHeader from '../components/Body/RightPanel/Header/ActionHeader';
-import MyWorkOrderList from '../components/Body/LeftPanel/Body/MyWorkOrderList';
-import ActionsList from '../components/Body/RightPanel/Body/ActionsList';
 
 import { NavigationScreenProp } from 'react-navigation';
 
-export interface IMyQueueScreenProps {
+export interface ICalendarProps {
   navigation: NavigationScreenProp<any, any>;
 }
 
-export default class MyQueueScreen extends Component<IMyQueueScreenProps> {
+export default class Calendar extends Component<ICalendarProps> {
   render() {
     return (
       <AppContainer>
@@ -25,23 +21,15 @@ export default class MyQueueScreen extends Component<IMyQueueScreenProps> {
              LEFT
         ======== */}
         <LeftPanel>
-          <LeftHeader>
-            <WorkOrderHeader />
-          </LeftHeader>
-          <LeftBody>
-            <MyWorkOrderList navigation={this.props.navigation} />
-          </LeftBody>
+          <LeftHeader />
+          <LeftBody />
         </LeftPanel>
         {/* ========
              RIGHT
         ======== */}
         <RightPanel>
-          <RightHeader>
-            <ActionHeader />
-          </RightHeader>
-          <RightBody>
-            <ActionsList />
-          </RightBody>
+          <RightHeader />
+          <RightBody />
         </RightPanel>
       </AppContainer>
     );

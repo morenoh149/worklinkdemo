@@ -7,13 +7,16 @@ export default class OrderDetail extends Component<any, any> {
     const { history } = this.props.navigation.state.params;
 
     return (
-      <View style={styles.history}>
-        <View style={styles.historyItem}>
-          <View>
-            <View>JJ</View>
-            <Text>{history.event.description}</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>History</Text>
+        <View style={styles.history}>
+          <View style={styles.historyItem}>
+            <View style={styles.avatar}>
+              <Text style={styles.avatarText}>JJ</Text>
+            </View>
+            <Text style={styles.event}>{history.event.description}</Text>
           </View>
-          <Text>{history.event.time}</Text>
+          <Text style={styles.time}>{history.event.time}</Text>
         </View>
       </View>
     );
@@ -21,29 +24,43 @@ export default class OrderDetail extends Component<any, any> {
 }
 
 const styles = StyleSheet.create({
-  history: {
-    backgroundColor: 'beige'
-  },
-  detailItem: {
-    flexDirection: 'row'
-    // backgroundColor: 'green'
-  },
-  icon: {
-    backgroundColor: '#BDBDBD',
-    borderRadius: 10,
-    width: 15,
-    height: 15
+  container: {
+    paddingTop: '5%',
+    paddingBottom: '2%'
   },
   title: {
-    fontWeight: 'bold',
-    color: '#757575',
-    fontSize: 12,
+    color: '#424242',
     paddingBottom: '2%',
-    paddingLeft: '3%'
+    fontWeight: 'bold'
   },
-  detail: {
+  history: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: '2%'
+  },
+  historyItem: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    flex: 0.6
+  },
+  avatar: {
+    backgroundColor: '#BDBDBD',
+    borderRadius: 40,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  avatarText: {
+    color: '#424242'
+  },
+  event: {
     color: '#757575',
-    paddingBottom: '3%',
-    paddingLeft: '6%'
+    fontSize: 16
+  },
+  time: {
+    color: '#757575'
   }
 });

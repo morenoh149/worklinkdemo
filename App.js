@@ -6,9 +6,8 @@ import {
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './src/React/components/Header';
 import NavBar from './src/React/components/NavBar';
-import Body from './src/React/components/Body/BodyContainer';
+// import Body from './src/React/components/Body/BodyContainer';
 import TabNavigator from './src/config/router';
-import Routes from './src/config/router';
 import MyQueue from './src/React/screens/MyQueueScreen';
 // type Props = {};
 // export default class App extends Component<Props> {
@@ -42,4 +41,3 @@ export default createStackNavigator(
     }
   }
 );
-

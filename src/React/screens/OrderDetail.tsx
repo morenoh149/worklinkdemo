@@ -1,162 +1,117 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
+import AppContainer from '../common/AppBody/AppContainer';
+import LeftPanel from '../common/AppBody/LeftPanel';
+import LeftHeader from '../common/AppBody/LeftHeader';
+import LeftBody from '../common/AppBody/LeftBody';
+import RightPanel from '../common/AppBody/RightPanel';
+import RightHeader from '../common/AppBody/RightHeader';
+import RightBody from '../common/AppBody/RightBody';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionHeader from '../components/Body/RightPanel/Header/ActionHeader';
-import ActionList from '../components/Body/RightPanel/Body/ActionsList';
+import ActionsList from '../components/Body/RightPanel/Body/ActionsList';
 import ServiceDetailCard from '../components/Body/LeftPanel/Body/ServiceDetailCard';
 import ServiceDescriptionCard from '../components/Body/LeftPanel/Body/ServiceDescriptionCard';
 import ClientCard from '../components/Body/LeftPanel/Body/ClientCard';
 import HistoryCard from '../components/Body/LeftPanel/Body/HistoryCard';
 
 export default class OrderDetail extends Component<any, any> {
+  scroll: ScrollView | null = null;
+
   render() {
     const { id } = this.props.navigation.state.params;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={[styles.leftStyles, styles.bothHeaders]}>
+      <AppContainer>
+        {/* ========
+             LEFT
+        ======== */}
+        <LeftPanel>
+          <LeftHeader>
             <TouchableOpacity
               style={styles.backButton}
               onPress={() => this.props.navigation.goBack()}
             >
               <Icon
                 name="ios-arrow-back"
-                size={18}
+                size={20}
                 color="black"
                 style={styles.backArrow}
               />
-              <Text>{id}</Text>
+              <Text style={styles.backText}>{id}</Text>
             </TouchableOpacity>
-          </View>
-          <View
-            style={[styles.rightStyles, styles.rightHeader, styles.bothHeaders]}
-          >
+          </LeftHeader>
+          <LeftBody>
+            <ScrollView
+              // create a ref to scroll back up to when button clicked
+              ref={c => {
+                this.scroll = c;
+              }}
+            >
+              <ServiceDetailCard navigation={this.props.navigation} />
+              <ServiceDescriptionCard navigation={this.props.navigation} />
+              <ClientCard navigation={this.props.navigation} />
+              <HistoryCard navigation={this.props.navigation} />
+              <TouchableOpacity
+                onPress={() => {
+                  if (this.scroll !== null)
+                    this.scroll.scrollTo({
+                      x: 0,
+                      y: 0,
+                      animated: true
+                    });
+                }}
+              >
+                <Icon
+                  name="ios-arrow-dropup-outline"
+                  size={30}
+                  color="black"
+                  style={styles.upArrow}
+                />
+              </TouchableOpacity>
+            </ScrollView>
+          </LeftBody>
+        </LeftPanel>
+        {/* ========
+             RIGHT
+        ======== */}
+        <RightPanel>
+          <RightHeader>
             <ActionHeader />
-          </View>
-        </View>
-        <View style={styles.body}>
-          <ScrollView
-            style={[styles.leftStyles, styles.leftBody, styles.bothBodies]}
-          >
-            <ServiceDetailCard
-              navigation={this.props.navigation}
-              style={styles.cards}
-            />
-            <ServiceDescriptionCard
-              navigation={this.props.navigation}
-              style={styles.cards}
-            />
-            <ClientCard
-              navigation={this.props.navigation}
-              style={styles.cards}
-            />
-            <HistoryCard
-              navigation={this.props.navigation}
-              style={styles.cards}
-            />
-            <Text>gg</Text>
-          </ScrollView>
-          <View
-            style={[styles.rightStyles, styles.rightBody, styles.bothBodies]}
-          >
-            <ActionList />
-          </View>
-        </View>
-      </View>
+          </RightHeader>
+          <RightBody>
+            <ActionsList />
+          </RightBody>
+        </RightPanel>
+      </AppContainer>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 6,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#BDBDBD',
-    paddingTop: '1%',
-    paddingLeft: '3%',
-    paddingRight: '3%',
-    paddingBottom: '3%'
-  },
-  leftStyles: {
-    flex: 2,
-    marginRight: '2%'
-  },
-  rightStyles: {
-    flex: 0.7,
-    marginLeft: '2%'
-  },
-  //=================
-  // Header Styles
-  //=================
-  header: {
-    flex: 0.3,
-    flexDirection: 'row'
-  },
-  bothHeaders: {
-    // borderWidth: 1,
-    // borderStyle: 'solid',
-    // borderColor: '#BDBDBD',
-    paddingLeft: '3%',
-    justifyContent: 'center'
-  },
-  rightHeader: {
-    flex: 0.6
-  },
   backButton: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: '2.5%'
   },
   backArrow: {
+    paddingTop: '.5%',
     paddingRight: '2%'
   },
-  //=================
-  // Body Styles
-  //=================
-  body: {
-    flex: 5,
-    flexDirection: 'row'
+  backText: {
+    fontSize: 20,
+    // color: '#757575',
+    fontWeight: 'bold'
   },
-  leftBody: {
-    // flex: 5,
-    // backgroundColor: 'blue',
-    paddingTop: '5%',
-    paddingLeft: '5%',
-    paddingRight: '5%'
-  },
-  rightBody: {
-    flex: 0.4
-  },
-  bothBodies: {
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#BDBDBD'
-  },
-
-  //=================
-  // Card Styles
-  //=================
-  cards: {
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#BDBDBD'
-  },
-  // status: {
-  //   color: '#757575',
-  //   fontWeight: 'bold',
-  //   fontSize: 12,
-  //   paddingBottom: '3%'
-  // },
   id: {
     fontSize: 18,
     color: '#757575',
     fontWeight: 'bold',
     paddingBottom: '3%'
+  },
+  upArrow: {
+    marginBottom: '8%',
+    color: '#757575',
+    alignSelf: 'flex-end',
+    alignItems: 'flex-start'
   }
 });

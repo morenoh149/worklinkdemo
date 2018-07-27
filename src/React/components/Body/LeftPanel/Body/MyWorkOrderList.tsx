@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
   wordCards: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 0.5,
+    borderWidth: 1,
+    borderBottomWidth: 0.5,
     borderStyle: 'solid',
     borderColor: '#BDBDBD',
     padding: '3%',

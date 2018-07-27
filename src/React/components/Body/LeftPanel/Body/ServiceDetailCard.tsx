@@ -14,15 +14,15 @@ export default class ServiceDetail extends Component<any, any> {
     } = this.props.navigation.state.params;
 
     return (
-      <View style={styles.mainDescription}>
+      <View style={styles.container}>
         <Text style={[styles.status]}>{status.toLocaleUpperCase()}</Text>
         <Text style={[styles.id]}>{id}</Text>
         <View>
           <View>
-            <Text style={styles.serviceDetails}>Service Details</Text>
+            <Text style={styles.title}>Service Details</Text>
             <View style={[styles.detailItem, styles.padding]}>
               <View style={styles.icon} />
-              <Text style={styles.title}>SERVICE LOCATION</Text>
+              <Text style={styles.subTitle}>SERVICE LOCATION</Text>
             </View>
             <Text style={[styles.detail, styles.padding]}>
               {serviceLocation}
@@ -31,34 +31,36 @@ export default class ServiceDetail extends Component<any, any> {
           <View>
             <View style={[styles.detailItem, styles.padding]}>
               <View style={styles.icon} />
-              <Text style={styles.title}>WORK CODE</Text>
+              <Text style={styles.subTitle}>WORK CODE</Text>
             </View>
             <Text style={[styles.detail, styles.padding]}>{workCode}</Text>
           </View>
           <View>
             <View style={[styles.detailItem, styles.padding]}>
               <View style={styles.icon} />
-              <Text style={styles.title}>SHOP</Text>
+              <Text style={styles.subTitle}>SHOP</Text>
             </View>
             <Text style={[styles.detail, styles.padding]}>{shop}</Text>
           </View>
           <View>
             <View style={[styles.detailItem, styles.padding]}>
               <View style={styles.icon} />
-              <Text style={styles.title}>ASSIGNED TO</Text>
+              <Text style={styles.subTitle}>ASSIGNED TO</Text>
             </View>
             <Text style={[styles.detail, styles.padding]}>{assignedTo}</Text>
           </View>
           <View>
             <View style={[styles.detailItem, styles.padding]}>
               <View style={styles.icon} />
-              <Text style={styles.title}>CLIENT PREFERRED SCHEDULE</Text>
+              <Text style={styles.subTitle}>CLIENT PREFERRED SCHEDULE</Text>
             </View>
             <View style={styles.clientSchedule}>
               <Text style={[styles.detail, styles.padding]}>
                 {clientSchedule}
               </Text>
-              <TouchableOpacity>+ Add to calendar</TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.add}>+ Add to calendar</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -68,26 +70,31 @@ export default class ServiceDetail extends Component<any, any> {
 }
 
 const styles = StyleSheet.create({
-  mainDescription: {
+  container: {
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#BDBDBD'
+    borderColor: '#BDBDBD',
+    paddingBottom: '2%'
   },
   status: {
-    color: '#757575',
+    color: '#424242',
     fontWeight: 'bold',
     fontSize: 12,
     paddingBottom: '3%'
   },
   id: {
     fontSize: 18,
-    color: '#757575',
+    color: '#424242',
     fontWeight: 'bold',
     paddingBottom: '3%'
   },
+  title: {
+    color: '#424242',
+    paddingBottom: '2%',
+    fontWeight: 'bold'
+  },
   detailItem: {
     flexDirection: 'row'
-    // backgroundColor: 'green'
   },
   icon: {
     backgroundColor: '#BDBDBD',
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15
   },
-  title: {
+  subTitle: {
     fontWeight: 'bold',
     color: '#757575',
     fontSize: 12,
@@ -103,8 +110,16 @@ const styles = StyleSheet.create({
     paddingLeft: '3%'
   },
   detail: {
-    color: '#757575',
+    color: '#424242',
     paddingBottom: '3%',
     paddingLeft: '6%'
+  },
+  clientSchedule: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  add: {
+    color: '#424242',
+    fontWeight: 'bold'
   }
 });

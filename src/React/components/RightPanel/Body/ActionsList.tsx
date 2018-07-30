@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  ListView
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 type Props = {};
 export default class ActionList extends Component<Props> {

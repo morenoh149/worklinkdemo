@@ -6,18 +6,20 @@ import LeftBody from '../common/AppBody/LeftBody';
 import RightPanel from '../common/AppBody/RightPanel';
 import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
-import UnassignedHeader from '../components/LeftPanel/Header/UnassignedHeader';
-import MyQueueHeader from '../components/RightPanel/Header/MyQueueHeader';
+import WorkOrderHeader from '../components/LeftPanel/Header/MyWorkOrderHeader';
+import ActionHeader from '../components/RightPanel/Header/ActionHeader';
 import MyWorkOrderList from '../components/LeftPanel/Body/MyWorkOrderList';
-import QueueList from '../components/RightPanel/Body/QueueList';
+import TeamList from '../components/RightPanel/Body/TeamList';
 
 import { NavigationScreenProp } from 'react-navigation';
 
-export interface IUnassignedProps {
+export interface IMyQueueScreenProps {
   navigation: NavigationScreenProp<any, any>;
 }
 
-export default class Unassigned extends Component<IUnassignedProps> {
+export default class SupervisorQueueScreen extends Component<
+  IMyQueueScreenProps
+> {
   render() {
     return (
       <AppContainer>
@@ -26,7 +28,7 @@ export default class Unassigned extends Component<IUnassignedProps> {
         ======== */}
         <LeftPanel>
           <LeftHeader>
-            <UnassignedHeader />
+            <WorkOrderHeader>My HVAC Queue</WorkOrderHeader>
           </LeftHeader>
           <LeftBody>
             <MyWorkOrderList navigation={this.props.navigation} />
@@ -37,10 +39,10 @@ export default class Unassigned extends Component<IUnassignedProps> {
         ======== */}
         <RightPanel>
           <RightHeader>
-            <MyQueueHeader />
+            <ActionHeader>HVAC Team</ActionHeader>
           </RightHeader>
           <RightBody>
-            <QueueList />
+            <TeamList />
           </RightBody>
         </RightPanel>
       </AppContainer>

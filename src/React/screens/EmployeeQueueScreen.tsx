@@ -6,10 +6,10 @@ import LeftBody from '../common/AppBody/LeftBody';
 import RightPanel from '../common/AppBody/RightPanel';
 import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
-import WorkOrderHeader from '../components/Body/LeftPanel/Header/MyWorkOrderHeader';
-import ActionHeader from '../components/Body/RightPanel/Header/ActionHeader';
-import MyWorkOrderList from '../components/Body/LeftPanel/Body/MyWorkOrderList';
-import ActionsList from '../components/Body/RightPanel/Body/ActionsList';
+import WorkOrderHeader from '../components/LeftPanel/Header/MyWorkOrderHeader';
+import ActionHeader from '../components/RightPanel/Header/ActionHeader';
+import MyWorkOrderList from '../components/LeftPanel/Body/MyWorkOrderList';
+import ActionsList from '../components/RightPanel/Body/ActionsList';
 
 import { NavigationScreenProp } from 'react-navigation';
 
@@ -17,7 +17,9 @@ export interface IMyQueueScreenProps {
   navigation: NavigationScreenProp<any, any>;
 }
 
-export default class MyQueueScreen extends Component<IMyQueueScreenProps> {
+export default class EmployeeQueueScreen extends Component<
+  IMyQueueScreenProps
+> {
   render() {
     return (
       <AppContainer>
@@ -26,7 +28,7 @@ export default class MyQueueScreen extends Component<IMyQueueScreenProps> {
         ======== */}
         <LeftPanel>
           <LeftHeader>
-            <WorkOrderHeader />
+            <WorkOrderHeader>My Work Orders</WorkOrderHeader>
           </LeftHeader>
           <LeftBody>
             <MyWorkOrderList navigation={this.props.navigation} />
@@ -37,7 +39,7 @@ export default class MyQueueScreen extends Component<IMyQueueScreenProps> {
         ======== */}
         <RightPanel>
           <RightHeader>
-            <ActionHeader />
+            <ActionHeader>Action</ActionHeader>
           </RightHeader>
           <RightBody>
             <ActionsList />

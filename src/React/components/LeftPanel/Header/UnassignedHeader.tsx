@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import LeftContainer from '../../../../common/LeftHeader/LeftContainer';
-import LeftTitle from '../../../../common/LeftHeader/LeftTitle';
-import FilterSort from '../../../../common/LeftHeader/FilterSort';
+import LeftContainer from '../../../common/LeftHeader/LeftContainer';
+import LeftTitle from '../../../common/LeftHeader/LeftTitle';
+import FilterSort from '../../../common/LeftHeader/FilterSort';
 
 export default class UnassignedHeader extends Component {
   render() {

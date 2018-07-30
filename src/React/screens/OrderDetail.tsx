@@ -8,12 +8,12 @@ import RightPanel from '../common/AppBody/RightPanel';
 import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ActionHeader from '../components/Body/RightPanel/Header/ActionHeader';
-import ActionsList from '../components/Body/RightPanel/Body/ActionsList';
-import ServiceDetailCard from '../components/Body/LeftPanel/Body/ServiceDetailCard';
-import ServiceDescriptionCard from '../components/Body/LeftPanel/Body/ServiceDescriptionCard';
-import ClientCard from '../components/Body/LeftPanel/Body/ClientCard';
-import HistoryCard from '../components/Body/LeftPanel/Body/HistoryCard';
+import ActionHeader from '../components/RightPanel/Header/ActionHeader';
+import ActionsList from '../components/RightPanel/Body/ActionsList';
+import ServiceDetailCard from '../components/LeftPanel/Body/ServiceDetailCard';
+import ServiceDescriptionCard from '../components/LeftPanel/Body/ServiceDescriptionCard';
+import ClientCard from '../components/LeftPanel/Body/ClientCard';
+import HistoryCard from '../components/LeftPanel/Body/HistoryCard';
 
 export default class OrderDetail extends Component<any, any> {
   scroll: ScrollView | null = null;

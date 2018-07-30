@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   FlatList
 } from 'react-native';
-import { workOrders, IWorkOrder } from '../../../../../data';
+import { workOrders, IWorkOrder } from '../../../../data';
 import { withNavigation } from 'react-navigation';
 
 class MyQueueList extends Component<any, any> {

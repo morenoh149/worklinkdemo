@@ -7,7 +7,7 @@ export default class ActionHeader extends Component<Props> {
     return (
       <View style={styles.container}>
         <View style={styles.title}>
-          <Text style={styles.titleText}>Action</Text>
+          <Text style={styles.titleText}>{this.props.children}</Text>
         </View>
         <View style={styles.icons} />
       </View>

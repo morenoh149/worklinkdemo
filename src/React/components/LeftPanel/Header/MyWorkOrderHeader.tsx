@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import LeftContainer from '../../../../common/LeftHeader/LeftContainer';
-import LeftTitle from '../../../../common/LeftHeader/LeftTitle';
-import FilterSort from '../../../../common/LeftHeader/FilterSort';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  PanResponder,
+  Animated
+} from 'react-native';
+import LeftContainer from '../../../common/LeftHeader/LeftContainer';
+import LeftTitle from '../../../common/LeftHeader/LeftTitle';
+import FilterSort from '../../../common/LeftHeader/FilterSort';
 
 export default class MyWorkOrderHeader extends Component {
   render() {
     return (
       <LeftContainer>
         <LeftTitle>
-          <Text style={styles.titleText}>My Work Orders</Text>
+          <Text style={styles.titleText}>{this.props.children}</Text>
           <View style={styles.onCall}>
             <TouchableOpacity style={styles.callBottom} />
             <Text style={styles.callText}>I am on call</Text>

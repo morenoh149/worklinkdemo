@@ -9,8 +9,22 @@ import {
 } from 'react-native';
 import { workOrders } from '../../../../data';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import TeamMember from './TeamMember';
 
 export default class TeamList extends Component<any, any> {
+  state = {
+    scrollEnabled: true,
+    modalVisible: false
+  };
+
+  setModalVisible = (visible: boolean) => {
+    this.setState({ modalVisible: visible });
+    console.log('visible?', visible);
+    console.log('after state change', this.state.modalVisible);
+  };
+  // toggleScroll = () => {
+  //   this.setState(prevState => ({ scrollEnabled: !prevState.scrollEnabled }));
+  // };
   render() {
     return (
       <View style={styles.container}>
@@ -22,25 +36,24 @@ export default class TeamList extends Component<any, any> {
               placeholderTextColor={'#999'}
               underlineColorAndroid={'#fff'}
               autoCorrect={false}
-              // ref={}
             />
+            {/* ref={} */}
             <Icon name="search" size={18} color="#BDBDBD" />
           </View>
         </View>
         <FlatList
           style={styles.teamContainer}
           data={workOrders}
+          extraData={[this.state, this.setModalVisible]}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.wordCards}>
-              <View style={styles.teamMember}>
-                <Text style={styles.teamMemberText}>{item.client.name}</Text>
-              </View>
-              <View style={styles.countIcon}>
-                <Text style={styles.countText}>5</Text>
-              </View>
-            </TouchableOpacity>
+            <TeamMember
+              item={item}
+              setModalVisible={this.setModalVisible}
+              modalVisible={this.state.modalVisible}
+            />
           )}
           keyExtractor={item => item.id}
+          scrollEnabled={this.state.scrollEnabled}
         />
         <View style={styles.addGroups}>
           <TouchableOpacity style={styles.addGroupButton}>
@@ -54,6 +67,8 @@ export default class TeamList extends Component<any, any> {
 
 const styles = StyleSheet.create({
   container: {
+    // position: 'absolute',
+    // zIndex: 355,
     flex: 1,
     alignContent: 'space-around'
   },
@@ -82,33 +97,8 @@ const styles = StyleSheet.create({
   },
   teamContainer: {
     flex: 1
-  },
-  wordCards: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#BDBDBD',
-    padding: '4%'
-  },
-  teamMember: {
-    // flexDirection: 'row',
-    // padding: '1%',
-    // backgroundColor: 'red'
-  },
-  teamMemberText: {
-    flex: 1
-  },
-  countIcon: {
-    backgroundColor: '#BDBDBD',
-    borderRadius: 30,
-    height: 25,
-    width: 25,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  countText: {
-    // flex: 1
+    // zIndex: 55
+    // position: 'absolute'
   },
   addGroups: {
     flex: 1,

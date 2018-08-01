@@ -65,7 +65,8 @@ const TabNavigator = createMaterialTopTabNavigator(
       indicatorStyle: {
         backgroundColor: 'black'
       }
-    }
+    },
+    swipeEnabled: false
   }
 );
 

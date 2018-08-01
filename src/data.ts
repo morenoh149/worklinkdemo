@@ -193,7 +193,7 @@ export const workOrders: AWorkOrder = [
     }
   },
   {
-    status: 'unassigned',
+    status: 'assigned',
     id: '18-000-0993',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
@@ -217,7 +217,7 @@ export const workOrders: AWorkOrder = [
     }
   },
   {
-    status: 'unassigned',
+    status: 'assigned',
     id: '18-000-0994',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
@@ -244,7 +244,7 @@ export const workOrders: AWorkOrder = [
     status: 'unassigned',
     id: '18-000-0995',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
-    assignedTo: 'Jennie Johnson',
+    assignedTo: '',
     shop: 'HVAC',
     workCode: `HVAC - Too Hot`,
     clientSchedule: '10/15/2018',

@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  PanResponder,
-  Animated
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import LeftContainer from '../../../common/LeftHeader/LeftContainer';
 import LeftTitle from '../../../common/LeftHeader/LeftTitle';
 import FilterSort from '../../../common/LeftHeader/FilterSort';

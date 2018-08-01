@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Provider } from "react-redux";
 import {
   createStackNavigator,
   createMaterialTopTabNavigator
 } from 'react-navigation';
+// import { DragDropStore } from './store';
 // import { StyleSheet, Text, View } from 'react-native';
 import Header from './src/React/components/Header';
 // import NavBar from './src/React/components/NavBar';

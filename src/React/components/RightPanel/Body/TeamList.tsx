@@ -5,7 +5,11 @@ import {
   View,
   TouchableOpacity,
   FlatList,
-  TextInput
+  TextInput,
+  UIManager,
+  findNodeHandle,
+  PanResponder,
+  Animated
 } from 'react-native';
 import { workOrders } from '../../../../data';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,17 +18,67 @@ import TeamMember from './TeamMember';
 export default class TeamList extends Component<any, any> {
   state = {
     scrollEnabled: true,
-    modalVisible: false
+    modalVisible: false,
+    locationPressed: {
+      x: 0,
+      y: 0
+    },
+    pan: new Animated.ValueXY(),
+    scaleAnimation: new Animated.Value(1)
   };
-
+  // get location of team member element to make modal appear there
+  getLocationPressed = (event: any) => {
+    //  0 0 195.5 41.5 547.5 245
+    console.log('event', event);
+    const UIManager = require('NativeModules').UIManager;
+    const handle = findNodeHandle(event.target);
+    UIManager.measureInWindow(handle, (x, y, width, height) => {
+      console.log('offset', x, y, width, height);
+      this.setState({
+        locationPressed: {
+          x: x,
+          y: y
+        }
+      });
+      console.log('location!!', this.state.locationPressed);
+      this.setModalVisible(true);
+    });
+  };
+  // handle whether modal is visible or not
   setModalVisible = (visible: boolean) => {
     this.setState({ modalVisible: visible });
-    console.log('visible?', visible);
-    console.log('after state change', this.state.modalVisible);
   };
-  // toggleScroll = () => {
-  //   this.setState(prevState => ({ scrollEnabled: !prevState.scrollEnabled }));
-  // };
+
+  startPanResponder = () => {
+    this.panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([
+        null,
+        {
+          // <--- When moving
+          dx: this.state.pan.x,
+          dy: this.state.pan.y
+        }
+      ]),
+      onPanResponderGrant: e => {
+        // this.state.pan.setOffset({ x: this.axisX, y: this.axisY });
+        this.state.pan.setValue({ x: 0, y: 0 });
+        Animated.spring(this.state.scaleAnimation, {
+          toValue: 1.5
+        }).start();
+      },
+      onPanResponderRelease: (e, gesture) => {
+        // Animated.spring(this.state.scaleAnimation, {
+        //   toValue: 1
+        // }).start();
+        Animated.spring(this.state.pan, {
+          toValue: { x: 0, y: 0 },
+          friction: 5
+        }).start();
+      } // <--- callback when dropped
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -37,19 +91,24 @@ export default class TeamList extends Component<any, any> {
               underlineColorAndroid={'#fff'}
               autoCorrect={false}
             />
-            {/* ref={} */}
             <Icon name="search" size={18} color="#BDBDBD" />
           </View>
         </View>
         <FlatList
           style={styles.teamContainer}
           data={workOrders}
-          extraData={[this.state, this.setModalVisible]}
+          extraData={[
+            this.state,
+            this.setModalVisible,
+            this.getLocationPressed
+          ]}
           renderItem={({ item }) => (
             <TeamMember
               item={item}
               setModalVisible={this.setModalVisible}
               modalVisible={this.state.modalVisible}
+              getLocation={this.getLocationPressed}
+              locationPressed={this.state.locationPressed}
             />
           )}
           keyExtractor={item => item.id}

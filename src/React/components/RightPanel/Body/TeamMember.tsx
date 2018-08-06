@@ -6,7 +6,9 @@ import {
   PanResponder,
   Animated,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  UIManager,
+  findNodeHandle
 } from 'react-native';
 import TeamModal from './TeamModal';
 
@@ -28,66 +30,69 @@ export default class TeamMember extends Component<any, any> {
   //     };
   //   }
   // panResponder = PanResponderInstance
+  panResponder: any;
   componentWillMount() {
-    // this.panResponder = PanResponder.create({
-    //   onStartShouldSetPanResponder: () => true,
-    //   onPanResponderMove: Animated.event([
-    //     null,
-    //     {
-    //       // <--- When moving
-    //       dx: this.state.pan.x,
-    //       dy: this.state.pan.y
-    //     }
-    //   ]),
-    //   onPanResponderGrant: e => {
-    //     // this.state.pan.setOffset({ x: this.axisX, y: this.axisY });
-    //     this.state.pan.setValue({ x: 0, y: 0 });
-    //     Animated.spring(this.state.scaleAnimation, {
-    //       toValue: 1.5
-    //     }).start();
-    //     this.props.toggleScroll();
-    //   },
-    //   onPanResponderRelease: (e, gesture) => {
-    //     // Animated.spring(this.state.scaleAnimation, {
-    //     //   toValue: 1
-    //     // }).start();
-    //     Animated.spring(this.state.pan, {
-    //       toValue: { x: 0, y: 0 },
-    //       friction: 5
-    //     }).start();
-    //     this.props.toggleScroll();
-    //   } // <--- callback when dropped
-    // });
+    this.panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: (event, gestureState) => true,
+      // onMoveShouldSetPanResponder: (event, gestureState) => true,
+      onPanResponderGrant: ({ nativeEvent }, gestureState) => {
+        this.props.getLocation(nativeEvent);
+      },
+      onPanResponderMove: (event, gestureState) => false,
+      onPanResponderTerminationRequest: evt => true,
+      onPanResponderRelease: (event, gestureState) => {
+        // true;
+        // this.props.getLocation(nativeEvent);
+        // this.setState({
+        //   locationX: event.nativeEvent.locationX.toFixed(2),
+        //   locationY: event.nativeEvent.locationY.toFixed(2)
+        // });
+      }
+    });
   }
 
   render() {
     // const panStyle = {
     //   transform: this.state.pan.getTranslateTransform()
     // };
+    const {
+      locationPressed,
+      modalVisible,
+      setModalVisible,
+      getLocation,
+      item
+    } = this.props;
     return (
-      <TouchableOpacity
-        style={[styles.teamMember]}
-        onPress={() => this.props.setModalVisible(true)}
-      >
-        {/* {...this.panResponder.panHandlers} */}
-        <View style={styles.name}>
-          <Text style={styles.teamMemberText}>
-            {this.props.item.client.name}
-          </Text>
-        </View>
-        <View style={styles.countIcon}>
-          <Text style={styles.countText}>5</Text>
-        </View>
-        <TeamModal
-          modalVisible={this.props.modalVisible}
-          setModalVisible={this.props.setModalVisible}
-        />
-      </TouchableOpacity>
+      <View style={styles.view}>
+        <TouchableOpacity
+          style={[styles.teamMember]}
+          onLongPress={evt => {
+            getLocation(evt.nativeEvent);
+          }}
+        >
+          {/* {...this.panResponder.panHandlers} */}
+          <View style={styles.name}>
+            <Text style={styles.teamMemberText}>{item.client.name}</Text>
+          </View>
+          <View style={styles.countIcon}>
+            <Text style={styles.countText}>5</Text>
+          </View>
+          <TeamModal
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+            getLocation={getLocation}
+            locationPressed={locationPressed}
+          />
+        </TouchableOpacity>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  view: {
+    // backgroundColor: 'yellow'
+  },
   teamMember: {
     justifyContent: 'space-between',
     flexDirection: 'row',

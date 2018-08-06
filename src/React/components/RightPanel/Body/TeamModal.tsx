@@ -31,7 +31,8 @@ export default class TeamModal extends Component<any, any> {
 
   componentWillMount() {
     this.panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
+      // onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: evt => true,
       onPanResponderMove: Animated.event([
         null,
         {
@@ -42,11 +43,10 @@ export default class TeamModal extends Component<any, any> {
       ]),
       onPanResponderGrant: e => {
         // this.state.pan.setOffset({ x: this.axisX, y: this.axisY });
-        this.state.pan.setValue({ x: 0, y: 0 });
-        Animated.spring(this.state.scaleAnimation, {
-          toValue: 1.5
-        }).start();
-        // this.props.toggleScroll();
+        // this.state.pan.setValue({ x: 0, y: 0 });
+        // Animated.spring(this.state.scaleAnimation, {
+        //   toValue: 1.5
+        // }).start();
       },
       onPanResponderRelease: (e, gesture) => {
         // Animated.spring(this.state.scaleAnimation, {
@@ -56,20 +56,23 @@ export default class TeamModal extends Component<any, any> {
           toValue: { x: 0, y: 0 },
           friction: 5
         }).start();
-        // this.props.toggleScroll();
       } // <--- callback when dropped
     });
   }
 
   render() {
+    const { locationPressed, modalVisible, setModalVisible } = this.props;
     const panStyle = {
+      position: 'absolute',
+      top: locationPressed.y,
+      left: locationPressed.x,
       transform: this.state.pan.getTranslateTransform()
     };
     return (
       <Modal
-        animationType="slide"
+        animationType="none"
         transparent={true}
-        visible={this.props.modalVisible}
+        visible={modalVisible}
         onRequestClose={() => {
           alert('Modal has been closed.');
         }}
@@ -82,7 +85,7 @@ export default class TeamModal extends Component<any, any> {
             <Icon name="account-circle" size={30} color="#BDBDBD" />
             <TouchableHighlight
               onPress={() => {
-                this.props.setModalVisible(!this.props.modalVisible);
+                setModalVisible(!modalVisible);
               }}
             >
               <Text>Hide Modal</Text>
@@ -96,7 +99,6 @@ export default class TeamModal extends Component<any, any> {
 
 const styles = StyleSheet.create({
   modal: {
-    position: 'absolute',
     height: 50,
     width: 200,
     borderRadius: 10,

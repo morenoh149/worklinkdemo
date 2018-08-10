@@ -29,7 +29,7 @@ export default class Unassigned extends Component<IUnassignedProps> {
             <UnassignedHeader />
           </LeftHeader>
           <LeftBody>
-            <MyWorkOrderList navigation={this.props.navigation} />
+            {/* <MyWorkOrderList navigation={this.props.navigation} /> */}
           </LeftBody>
         </LeftPanel>
         {/* ========

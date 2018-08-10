@@ -31,7 +31,7 @@ export default class EmployeeQueueScreen extends Component<
             <WorkOrderHeader>My Work Orders</WorkOrderHeader>
           </LeftHeader>
           <LeftBody>
-            <MyWorkOrderList navigation={this.props.navigation} />
+            {/* <MyWorkOrderList navigation={this.props.navigation} /> */}
           </LeftBody>
         </LeftPanel>
         {/* ========

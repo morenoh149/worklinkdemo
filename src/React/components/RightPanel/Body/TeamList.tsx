@@ -8,78 +8,70 @@ import {
   TextInput,
   UIManager,
   findNodeHandle,
-  PanResponder,
-  Animated
+  Animated,
+  PanResponder
 } from 'react-native';
 import { workOrders } from '../../../../data';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import TeamMember from './TeamMember';
+import TeamModal from './TeamModal';
+
+const AnimatedModal = Animated.createAnimatedComponent(TeamModal);
 
 export default class TeamList extends Component<any, any> {
-  state = {
-    scrollEnabled: true,
-    modalVisible: false,
-    locationPressed: {
-      x: 0,
-      y: 0
-    },
-    pan: new Animated.ValueXY(),
-    scaleAnimation: new Animated.Value(1)
-  };
-  // get location of team member element to make modal appear there
-  getLocationPressed = (event: any) => {
-    //  0 0 195.5 41.5 547.5 245
-    console.log('event', event);
-    const UIManager = require('NativeModules').UIManager;
-    const handle = findNodeHandle(event.target);
-    UIManager.measureInWindow(handle, (x, y, width, height) => {
-      console.log('offset', x, y, width, height);
-      this.setState({
-        locationPressed: {
-          x: x,
-          y: y
-        }
-      });
-      console.log('location!!', this.state.locationPressed);
-      this.setModalVisible(true);
-    });
-  };
+  // state = {
+  //   scrollEnabled: true,
+  //   modalVisible: false,
+  //   locationPressed: {
+  //     x: 0,
+  //     y: 0
+  //   },
+  //   pan: new Animated.ValueXY()
+  // };
+  // panResponder = {};
+  // componentWillMount() {
+  //   this.panResponder = PanResponder.create({
+  //     onStartShouldSetPanResponder: () => true,
+  //     onPanResponderMove: Animated.event([
+  //       null,
+  //       {
+  //         // <--- When moving
+  //         dx: this.state.pan.x,
+  //         dy: this.state.pan.y
+  //       }
+  //     ]),
+  //     onPanResponderRelease: (e, gesture) => {
+  //       Animated.spring(this.state.pan, {
+  //         toValue: { x: 0, y: 0 },
+  //         friction: 5
+  //       }).start();
+  //     } // <--- callback when dropped
+  //   });
+  // }
+  // // get location of team member element to make modal appear there
+  // getLocationPressed = (event: any) => {
+  //   console.log('event', event);
+  //   const UIManager = require('NativeModules').UIManager;
+  //   const handle = findNodeHandle(event.target);
+  //   UIManager.measureInWindow(handle, (x, y, width, height) => {
+  //     console.log('offset', x, y, width, height);
+  //     this.setState({
+  //       locationPressed: {
+  //         x: x,
+  //         y: y
+  //       }
+  //     });
+  //     console.log('location!!', this.state.locationPressed);
+  //     this.setModalVisible(true);
+  //   });
+  // };
   // handle whether modal is visible or not
-  setModalVisible = (visible: boolean) => {
-    this.setState({ modalVisible: visible });
-  };
-
-  startPanResponder = () => {
-    this.panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([
-        null,
-        {
-          // <--- When moving
-          dx: this.state.pan.x,
-          dy: this.state.pan.y
-        }
-      ]),
-      onPanResponderGrant: e => {
-        // this.state.pan.setOffset({ x: this.axisX, y: this.axisY });
-        this.state.pan.setValue({ x: 0, y: 0 });
-        Animated.spring(this.state.scaleAnimation, {
-          toValue: 1.5
-        }).start();
-      },
-      onPanResponderRelease: (e, gesture) => {
-        // Animated.spring(this.state.scaleAnimation, {
-        //   toValue: 1
-        // }).start();
-        Animated.spring(this.state.pan, {
-          toValue: { x: 0, y: 0 },
-          friction: 5
-        }).start();
-      } // <--- callback when dropped
-    });
-  };
+  // setModalVisible = (visible: boolean) => {
+  //   this.setState({ modalVisible: visible });
+  // };
 
   render() {
+    const {} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.teamSearch}>
@@ -95,24 +87,18 @@ export default class TeamList extends Component<any, any> {
           </View>
         </View>
         <FlatList
+          scrollEnabled={this.props.scrollEnabled}
           style={styles.teamContainer}
           data={workOrders}
-          extraData={[
-            this.state,
-            this.setModalVisible,
-            this.getLocationPressed
-          ]}
+          extraData={this.props}
           renderItem={({ item }) => (
             <TeamMember
               item={item}
-              setModalVisible={this.setModalVisible}
-              modalVisible={this.state.modalVisible}
-              getLocation={this.getLocationPressed}
-              locationPressed={this.state.locationPressed}
+              getLocation={this.props.getLocation}
+              modalPanResponder={this.props.modalPanResponder}
             />
           )}
           keyExtractor={item => item.id}
-          scrollEnabled={this.state.scrollEnabled}
         />
         <View style={styles.addGroups}>
           <TouchableOpacity style={styles.addGroupButton}>
